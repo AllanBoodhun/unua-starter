@@ -1,0 +1,48 @@
+@use "sass:math";
+
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless ($number) {
+        @return  math.div($number, $number * 0 + 1);
+    }
+    @return $number;
+}
+
+@function rem ($size, $base: $base-font-size) {
+    @return math.div(1rem * $size, strip-unit($base));
+}
+
+@function em ($size, $base: $base-font-size) {
+    @return math.div(1em * $size, strip-unit($base));
+}
+
+// créer une foncton css pour les media queries
+@mixin media($breakpoint) {
+    @if $breakpoint == 'phone' {
+      @media (max-width: 767px) {
+        @content;
+      }
+    }
+    @else if $breakpoint == 'tablet' {
+      @media (min-width: 768px) and (max-width: 1023px) {
+        @content;
+      }
+    }
+    @else if $breakpoint == 'desktop' {
+      @media (min-width: 1024px) {
+        @content;
+      }
+    }
+  }
+
+  // comment utiliser la fonction css media ?
+    // .container {
+    //   @include media('phone') {
+    //     background-color: red;
+    //   }
+    //   @include media('tablet') {
+    //     background-color: green;
+    //   }
+    //   @include media('desktop') {
+    //     background-color: blue;
+    //   }
+    // }
