@@ -4,14 +4,15 @@
   *  @author Allan Boodhun
   *  @link www.allan-boodhun.com
   */
-// test
+
 class UnuaPrimaryMenu{
   function __construct(){
       add_action( 'after_setup_theme', array( $this, 'register_unua_menu' ) );
-      add_action('unua_header', array( $this, 'displayMenu' ) );
+      // add_action( 'unua_header', array( $this, 'displayMenu' ) );
   }
   function register_unua_menu() {
       register_nav_menu( 'primary', __( 'Menu Principal', 'unua' ) );
+      $this->displayMenu();
   }
   function unuaNavMenu(){
       wp_nav_menu( array(
@@ -28,12 +29,12 @@ class UnuaPrimaryMenu{
           'container_id'    => 'main-menu',
       ));
   }
-  function displayMenu(){
-      ob_start();
-      $this->unuaNavMenu();
-      $nav_bar = ob_get_clean();
-      // On affiche le menu
-      echo get_template_part('templates/view_header', null, array('nav_bar' => $nav_bar));
+  function displayMenu() {
+    if (!is_admin()) {
+      $menu = new Timber\Menu('primary'); // utilise Timber pour récupérer le menu
+      $context['menu'] = $menu;
+      Timber::render('views/header.twig', $context); // affiche le menu dans view_header.twig
+    }
   }
 }
 new UnuaPrimaryMenu();

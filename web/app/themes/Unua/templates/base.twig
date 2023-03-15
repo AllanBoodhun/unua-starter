@@ -5,6 +5,9 @@
     {{function('wp_head')}}
 </head>
 <body class='{{body_class}}'>
+  	{% block header %}
+      {% include 'views/header.twig' %}
+    {% endblock %}
   {% block body '' %}
 </body>
 {{function('wp_footer')}}
