@@ -1,0 +1,7 @@
+.entry-content{
+  background-color: $secondColor;
+  min-height: 100vh;
+  @include media('desktop') {
+    padding-left: calc($header-width + 2rem);
+  }
+}

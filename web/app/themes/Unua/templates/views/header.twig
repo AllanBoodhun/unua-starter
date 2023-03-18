@@ -1,11 +1,25 @@
-{% if menu %}
-  <nav class="navbar" id="main-menu">
-    <ul class="nav-menu">
-      {% for item in menu.get_items %}
-        <li {% if item.get_classes is not empty %}class="{{ item.get_classes | join(' ') }}"{% endif %}>
-          <a href="{{ item.get_link }}"><span itemprop="name">{{ item.title }}</span></a>
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
-{% endif %}
+<header class="site-header" role="banner" >
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for ="menu-toggle" class="menu-toggle-label">
+      <span class="menu-toggle-label__line line_1"></span>
+      <span class="menu-toggle-label__line line_2"></span>
+      <span class="menu-toggle-label__line line_3"></span>
+      <span class="menu-toggle-label__line line_4"></span>
+    </label>
+  <div class="site-header__content" >
+    <div class="site-header__logo">
+      <img src="{{ logo }}" alt="logo du site" />
+    </div>
+    {% if menu %}
+      <nav class="site-nav" id="main-menu">
+        <ul class="nav-menu">
+          {% for item in menu.get_items %}
+            <li {% if item.get_classes is not empty %}class="{{ item.get_classes | join(' ') }}"{% endif %}>
+              <a href="{{ item.get_link }}"><span itemprop="name">{{ item.title }}</span></a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</header>

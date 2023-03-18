@@ -7,9 +7,11 @@ function UnuaStyles() {
 	wp_enqueue_style('UnuaStyle');
 }
 
-add_action( 'wp_enqueue_scripts', 'UnuaScripts', 25 );
-function UnuaScripts() {
-// Script du thème
-    wp_enqueue_script("script", get_template_directory_uri() . "/assets/main.min.js", [], false);
-}
 
+add_action('wp_enqueue_scripts', 'UnuaScripts');
+function UnuaScripts() {
+    // Ajoute votre script à la file d'attente des scripts de WordPress
+    wp_enqueue_script('script', get_template_directory_uri() . '/assets/main.min.js', array(), null, true);
+    // Ajoute l'attribut defer à votre script
+    wp_script_add_data('script', 'defer', true);
+}

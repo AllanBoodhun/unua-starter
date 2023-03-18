@@ -16,10 +16,11 @@ web/.htaccess
 # Logs
 *.log
 
-# Dotenv
+# Dotenv et authentification
 .env
 .env.*
 !.env.example
+auth.json
 
 # Composer
 /vendor

@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html {{ site.language_attributes }} > 
-<head>
-    <meta charset="{{ site.charset }}">
-    {{function('wp_head')}}
+{% block html_head_container %}
+  {% include 'views/html-header.twig' %}
+  {% block head %}
+  {% endblock %}
 </head>
+{% endblock %}
+
 <body class='{{body_class}}'>
-  	{% block header %}
-      {% include 'views/header.twig' %}
-    {% endblock %}
+  {% block header %}
+    {% include 'views/header.twig' %}
+  {% endblock %}
+  
   {% block body '' %}
+  {# {% endblock %} #}
+  
+
+
+  {{function('wp_footer')}}
 </body>
-{{function('wp_footer')}}
 </html>
